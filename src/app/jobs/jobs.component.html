@@ -1,0 +1,138 @@
+<div style="width: 100% ; height: 100px; background-color: #001E4C;">
+  <a [href]="aLink" target="_blank" style="display: none;" id="imgurl"></a>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="heading">Jobs in Egypt</h3>]
+            <div class="form-group">
+                
+                <input #query (keyup)="filter(query.value)" placeholder="Search... by job"
+                 type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span class="btn " [class.active]="apiName == 'all-jobs'" (click)="getjobsData()">All
+                            Jobs</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="btn " [class.active]=" apiName == 'all-companies' "
+                            (click)="getCompaniesData()">All Companies</span>
+
+                    </li>
+                    <li class="list-group-item">
+                        <span class="btn" [class.active]=" apiName == 'most-locations' "
+                            (click)="getAllLocations()">Most Locations</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="btn" [class.active]=" apiName == 'demands-job' " (click)="getDemandsJob()">Demandes
+                            Job</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="btn" [class.active]=" apiName == 'req-skills' "
+                            (click)="getRequriedSkills()">Requried Skills</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md 1"></div>
+        <div class="col-md-8">
+            <div class="card" *ngFor="let job of data">
+
+                <!--In Case of apiName == all-jobs -->
+                <div class="card-contain" *ngIf="apiName == 'all-jobs'">
+                    <div class="card-body">
+                        <h5 class="card-title title">{{job.title}}</h5>
+                        <p class="card-text">
+                            <button class="btn btn-danger sm-3 absolute-btn" (click)="delete(job)">Delete</button>
+                            <span class="sm-3 company">
+                                {{job.company}}
+
+                            </span>
+                            <span class="sm-3 location">{{job.location}}</span>
+                            <span class="sm-3 level">{{job.level}}</span>
+                        </p>
+
+                        <span class="badge bg-light text-dark">{{job.type}}</span>
+                    </div>
+                    <div class="card-footer">
+
+                        <span> {{job.skills}}</span>
+                    </div>
+
+                </div>
+                <!--In Case of apiName == all-companies -->
+                <div class="card-contain" *ngIf="apiName == 'all-companies'">
+                    <div class="card-body">
+                        <h5 class="card-title title">{{job.name}}</h5>
+                        <button class="btn btn-danger sm-3 absolute-btn" (click)="delete(job)">Delete</button>
+
+                        <span class="badge bg-light text-dark">
+                            No.jobs is {{job.count}}
+                        </span>
+                    </div>
+
+                    <!-- <div class="card-footer">
+
+                        <span> {{job.skills}}</span>
+                    </div> -->
+
+                </div>
+
+                <!--In Case of apiName == most-locations -->
+
+                <div class="card-contain" *ngIf="apiName == 'most-locations'">
+                    <div class="card-body">
+                        <h5 class="card-title title">{{job.name}}</h5>
+                        <button class="btn btn-danger sm-3 absolute-btn" (click)="delete(job)">Delete</button>
+
+
+                        <span class="badge bg-light text-dark">
+                            No.jobs is {{job.count}}
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- In Case Of apiName = demands-job -->
+                <div class="card-contain" *ngIf="apiName == 'demands-job'">
+                    <div class="card-body">
+                        <h5 class="card-title title">{{job.name}}</h5>
+                        <button class="btn btn-danger sm-3 absolute-btn" (click)="delete(job)">Delete</button>
+
+
+                        <span class="badge bg-light text-dark">
+                            No.jobs is {{job.count}}
+                        </span>
+                    </div>
+
+
+                </div>
+
+                <!-- In Case of apiName = req-skills -->
+                <div class="card-contain" *ngIf="apiName == 'req-skills'">
+                    <div class="card-body">
+                        <h5 class="card-title title">{{job[0]}}</h5>
+                        <button class="btn btn-danger sm-3 absolute-btn" (click)="delete(job)">Delete</button>
+
+
+                        <span class="badge bg-light text-dark">
+                            No.jobs is {{job[1]}}
+                        </span>
+                    </div>
+
+               
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

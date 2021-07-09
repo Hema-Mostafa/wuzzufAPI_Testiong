@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wuzzuf-client';
+
+  orders = [10,20,30,40,50];
+
 }
